@@ -8,12 +8,15 @@ int main() {
     char letra1, letra2;
     char codigo1[2], codigo2[2];
     char nome1[20], nome2[20];
-    int populacao1, populacao2;
+    unsigned int populacao1, populacao2;
     float area1, area2;
     float pib1, pib2;
     float densidadep1, densidadep2;
     float pibpercapita1, pibpercapita2;
     int pontosturisticos1, pontosturisticos2;
+    float super1, super2;
+    //Variaveis de resultados
+    unsigned int resultadopopulacao, resultadoarea, resultadopib, resultadodesnidade, resultadopibcapta, resultadopontosturisticos, resultadoSuper;
 
     //Apresentação do jogo - SplashScreen
     printf("----------------------------------\n|                                |\n| Bem-vindo ao jogo Super Trunfo |\n|                                |\n| ***Criado por Patrick Andre*** |\n|                                |\n----------------------------------\n\n");
@@ -51,19 +54,21 @@ int main() {
     //Área de calculos
     densidadep1 = (float)populacao1 / area1;
     pibpercapita1 = (pib1 * 1000000000) / (float)populacao1; // Converter PIB de bilhões para reais
+    super1 = populacao1 + area1 + pib1 - densidadep1 + pibpercapita1 + pontosturisticos1;
 
     //Exibir informações da primeira carta
     printf("\n\n----------------------------\n\nCadastrado a cidade de %s\nO código da carta é %c%s\n", nome1, letra1, codigo1);
-    printf("População: %i\n", populacao1);
+    printf("População: %i mil habitantes\n", populacao1);
     printf("Área: %.2f km²\n", area1);
     printf("PIB: %.2f bilhões de reais\n", pib1);
     printf("Pontos turísticos: %i\n", pontosturisticos1);
     printf("Densidade populacional: %.2f hab/km²\n", densidadep1);
     printf("PIB per capita: %.2f\n\n", pibpercapita1);
+    printf("Super Poder: %.2f", super1);
 
     //Cadastro da segunda carta
 
-    printf("\n\nVamos cadastrar a segunda carta\n\n");
+    printf("\n\n----------------------------\n\nVamos cadastrar a segunda carta\n\n----------------------------\n\n");
     printf("Digite uma letra para a segunda carta (A-Z): \n");
     scanf(" %c", &letra2);
 
@@ -89,7 +94,8 @@ int main() {
     //Área de calculos
     densidadep2 = (float)populacao2 / area2;
     pibpercapita2 = (pib2 * 1000000000) / (float)populacao2; // Converter PIB de bilhões para reais
-
+    super2 = populacao2 + area2 + pib2 - densidadep2 + pibpercapita2 + pontosturisticos2;
+    
     //Exibir informações da segunda carta
     printf("\n\n----------------------------\n\nCadastrado a cidade de %s\nO código da carta é %c%s\n", nome2, letra2, codigo2);
     printf("População: %i\n", populacao2);
@@ -98,8 +104,40 @@ int main() {
     printf("Pontos turísticos: %i\n", pontosturisticos2);
     printf("Densidade populacional: %.2f hab/km²\n", densidadep2);
     printf("PIB per capita: %.2f\n\n", pibpercapita2);
+    printf("Super Poder: %.2f", super2);
 
-    printf("\n*** Cartas cadastradas! ***\nPor hora é tudo...\n");
+    printf("\n\n----------------------------\n\n*** Cartas cadastradas! ***\nÉ hora do combate!\n\n----------------------------\n\n");
+    printf("O resultado de cada parâmetro é:\n\n");
+
+    //Variaveis de resultados de comparação
+    resultadopopulacao = populacao1 > populacao2;
+    resultadoarea = area1 > area2;
+    resultadopib = pib1 > pib2;
+    resultadodesnidade = densidadep1 < densidadep2;
+    resultadopibcapta = pibpercapita1 > pibpercapita2;
+    resultadopontosturisticos = pontosturisticos1 > pontosturisticos2;
+    resultadoSuper = super1 > super2;
+
+    printf("Carta 1 venceu em população: %i\n", resultadopopulacao);
+    printf("Carta 1 venceu em are: %i\n", resultadoarea);
+    printf("Carta 1 venceu em pib: %i\n", resultadopib);
+    printf("Carta 1 venceu em densidade: %i\n", resultadodesnidade);
+    printf("Carta 1 venceu em PIB per capta: %i\n", resultadopibcapta);
+    printf("Carta 1 venceu em Ponto Turísticos: %i\n", resultadopontosturisticos);
+    printf("Carta 1 venceu em Super Poder: %i\n", resultadoSuper);
+
+    //Variaveis de total de vitórias
+    int totalPontos1, totalPontos2;
+    totalPontos1 = resultadoarea + resultadodesnidade + resultadopib + resultadopibcapta + resultadopontosturisticos + resultadopopulacao + resultadoSuper;
+    totalPontos2 = 7 - totalPontos1;
+
+    printf("\nA carta 1 ganhou %i vezes\n", totalPontos1);
+    printf("A carta 2 ganhou %i vezes\n", totalPontos2);
+
+    printf("\nA carta 1 é a vencedora: %i\n", (totalPontos1 > totalPontos2));
+
+
+
 
     return 0;
 }

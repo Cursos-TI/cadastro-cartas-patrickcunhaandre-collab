@@ -15,8 +15,6 @@ int main() {
     float pibpercapita1, pibpercapita2;
     int pontosturisticos1, pontosturisticos2;
     float super1, super2;
-    //Variaveis de resultados
-    unsigned int resultadopopulacao, resultadoarea, resultadopib, resultadodesnidade, resultadopibcapta, resultadopontosturisticos, resultadoSuper;
 
     //Apresentação do jogo - SplashScreen
     printf("----------------------------------\n|                                |\n| Bem-vindo ao jogo Super Trunfo |\n|                                |\n| ***Criado por Patrick Andre*** |\n|                                |\n----------------------------------\n\n");
@@ -107,37 +105,15 @@ int main() {
     printf("Super Poder: %.2f", super2);
 
     printf("\n\n----------------------------\n\n*** Cartas cadastradas! ***\nÉ hora do combate!\n\n----------------------------\n\n");
-    printf("O resultado de cada parâmetro é:\n\n");
-
-    //Variaveis de resultados de comparação
-    resultadopopulacao = populacao1 > populacao2;
-    resultadoarea = area1 > area2;
-    resultadopib = pib1 > pib2;
-    resultadodesnidade = densidadep1 < densidadep2;
-    resultadopibcapta = pibpercapita1 > pibpercapita2;
-    resultadopontosturisticos = pontosturisticos1 > pontosturisticos2;
-    resultadoSuper = super1 > super2;
-
-    printf("Carta 1 venceu em população: %i\n", resultadopopulacao);
-    printf("Carta 1 venceu em are: %i\n", resultadoarea);
-    printf("Carta 1 venceu em pib: %i\n", resultadopib);
-    printf("Carta 1 venceu em densidade: %i\n", resultadodesnidade);
-    printf("Carta 1 venceu em PIB per capta: %i\n", resultadopibcapta);
-    printf("Carta 1 venceu em Ponto Turísticos: %i\n", resultadopontosturisticos);
-    printf("Carta 1 venceu em Super Poder: %i\n", resultadoSuper);
-
-    //Variaveis de total de vitórias
-    int totalPontos1, totalPontos2;
-    totalPontos1 = resultadoarea + resultadodesnidade + resultadopib + resultadopibcapta + resultadopontosturisticos + resultadopopulacao + resultadoSuper;
-    totalPontos2 = 7 - totalPontos1;
-
-    printf("\nA carta 1 ganhou %i vezes\n", totalPontos1);
-    printf("A carta 2 ganhou %i vezes\n", totalPontos2);
-
-    printf("\nA carta 1 é a vencedora: %i\n", (totalPontos1 > totalPontos2));
-
-
-
-
+    printf("Comparando Super Poder de cada carta...\n\n");
+    
+    //Comparar Super Poder das cartas e determinar o vencedor
+    printf("///////////////////////////////////\n\n");
+    if ( super1 > super2) {
+    printf("A carta vencedora é: %s\n\n", nome1);
+    }   else {
+        printf("A carta venceroa é:\n>>>>> %s <<<<<\n", nome2);
+    }
+    printf("///////////////////////////////////\n");
     return 0;
 }

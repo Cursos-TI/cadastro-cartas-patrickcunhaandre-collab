@@ -12,14 +12,14 @@ float Area[4] = {496, 1521, 1200, 432};
 int PontosTuristicos[4] = {30 ,90 , 50 , 26};
 float Densidade[4] = {2690, 7528, 5556, 4078};
 int TrunfoPlayer, TrunfoComputer;
-int playeratribute;
+int PlayerScoreRound;
 
 void limparTela() {
         printf("\033[H\033[J"); // Limpa a tela para manter a interface amigável
 }
 void suspensetiming() {
         //Apenas visual para dar experiencia de suspense para o jogador
-        Sleep(3000);
+        Sleep(2000);
         printf("\nAgora vamos comparar os pontos, aguarde...\n");
         Sleep(2000);
         limparTela();
@@ -41,7 +41,7 @@ int RandomTrunfo() {
     return pickCard;
 }
 
-void CardInfos(){
+void CardInfos(int PlayerCard){
         printf("Sua carta é:\n\n---------------------\n");
         printf("%s\n", CardName[PlayerCard]);
         printf("População: %i\n", Populacao[PlayerCard]);
@@ -49,16 +49,16 @@ void CardInfos(){
         printf("Área: %.0f Km²\n", Area[PlayerCard]);
         printf("Pontos turísticos: %i\n", PontosTuristicos[PlayerCard]);
         printf("Densidade demográfica: %.0f\n", Densidade[PlayerCard]);
-        printf("Trunfo aleatório: %i", TrunfoPlayer);
-        printf("\n---------------------\n\n");
+        printf("Trunfo da Sorte: %i\n", TrunfoPlayer);
+        printf("---------------------\n\n");
 }
 
 void ComparationTest() {
         //Roda a comparação das cartas a partir do menu de seleção de atributo
+        printf("A carta do Computador é:\n>>> %s <<<\n\n", CardName[ComputerCard]);
         switch (menu){
         case 1:
             printf("Você escolheu\n>>> População <<<\n\n");
-            printf("A carta do Computador é:\n>>> %s <<<\n", CardName[ComputerCard]);
             suspensetiming();
             printf("População da sua carta: %i\n", Populacao[PlayerCard]);
             printf("população da carta do Computador: %i\n", Populacao[ComputerCard]);
@@ -66,7 +66,7 @@ void ComparationTest() {
                 if (Populacao[PlayerCard] > Populacao[ComputerCard])
                 {
                     printf("%s ganhou!!!\n\n", playername);
-                    playeratribute +=1;
+                    PlayerScoreRound +=1;
                 }   else if (Populacao[PlayerCard] < Populacao[ComputerCard]) {
                     printf("O Computador ganhou!!!\n\n");
                 }   else {
@@ -76,7 +76,6 @@ void ComparationTest() {
             break;
         case 2:
             printf("Você escolheu\n>>> PIB <<<\n\n");
-            printf("A carta do Computador é:\n>>> %s <<<\n", CardName[ComputerCard]);
             suspensetiming();
             printf("PIB da sua carta: R$ %.2f bilhões\n", PIB[PlayerCard]);
             printf("PIB da carta do Computador: R$ %.2f bilhões\n", PIB[ComputerCard]);
@@ -84,7 +83,7 @@ void ComparationTest() {
                 if (PIB[PlayerCard] > PIB[ComputerCard])
                 {
                     printf("%s ganhou!!!\n\n", playername);
-                    playeratribute +=1;
+                    PlayerScoreRound +=1;
                 }   else if (PIB[PlayerCard] < PIB[ComputerCard]) {
                     printf("O Computador ganhou!!!\n\n");
                 }   else {
@@ -94,7 +93,6 @@ void ComparationTest() {
             break;
         case 3:
             printf("Você escolheu\n>>> Área <<<\n\n");
-            printf("A carta do Computador é:\n>>> %s <<<\n", CardName[ComputerCard]);
             suspensetiming();
             printf("Área da sua carta:%.0f Km²\n", Area[PlayerCard]);
             printf("Área da carta do Computador: %.0f Km²\n", Area[ComputerCard]);
@@ -102,7 +100,7 @@ void ComparationTest() {
                 if (Area[PlayerCard] > Area[ComputerCard])
                 {
                     printf("%s ganhou!!!\n\n", playername);
-                    playeratribute +=1;
+                    PlayerScoreRound +=1;
                 }   else if (Area[PlayerCard] < Area[ComputerCard]) {
                     printf("O Computador ganhou!!!\n\n");
                 }   else {
@@ -112,7 +110,6 @@ void ComparationTest() {
             break;
         case 4:
             printf("Você escolheu\n>>> Pontos Turísticos <<<\n\n");
-            printf("A carta do Computador é:\n>>> %s <<<\n", CardName[ComputerCard]);
             suspensetiming();
             printf("Você tem %i Pontos Turísticos\n", PontosTuristicos[PlayerCard]);
             printf("O Computador tem %i Pontos Turísticos\n", PontosTuristicos[ComputerCard]);
@@ -120,7 +117,7 @@ void ComparationTest() {
                 if (PontosTuristicos[PlayerCard] > PontosTuristicos[ComputerCard])
                 {
                     printf("%s ganhou!!!\n\n", playername);
-                    playeratribute +=1;
+                    PlayerScoreRound +=1;
                 }   else if (PontosTuristicos[PlayerCard] < PontosTuristicos[ComputerCard]) {
                     printf("O Computador ganhou!!!\n\n");
                 }   else {
@@ -130,7 +127,6 @@ void ComparationTest() {
             break;
         case 5:
             printf("Você escolheu\n>>> Densidade Demográfica <<<\n\n");
-            printf("A carta do Computador é:\n>>> %s <<<\n", CardName[ComputerCard]);
             suspensetiming();
             printf("Sua Densidade Demográfica é: %.0f\n", Densidade[PlayerCard]);
             printf("Densidade Demográfica do Computador é: %.0f\n", Densidade[ComputerCard]);
@@ -138,7 +134,7 @@ void ComparationTest() {
                 if (Densidade[PlayerCard] < Densidade[ComputerCard])
                 {
                     printf("%s ganhou!!!\n\n", playername);
-                    playeratribute +=1;
+                    PlayerScoreRound +=1;
                 }   else if (Densidade[PlayerCard] > Densidade[ComputerCard]) {
                     printf("O Computador ganhou!!!\n\n");
                 }   else {
@@ -148,7 +144,6 @@ void ComparationTest() {
             break;
         case 6:
             printf("Você escolheu\n>>> Trunfo da Sorte <<<\n\n");
-            printf("A carta do Computador é:\n>>> %s <<<\n", CardName[ComputerCard]);
             suspensetiming();
             printf("Seu Trunfo é: %i\n", TrunfoPlayer);
             printf("Trunfo do Computador é: %i\n", TrunfoComputer);
@@ -156,7 +151,7 @@ void ComparationTest() {
                 if (TrunfoPlayer > TrunfoComputer)
                 {
                     printf("%s ganhou!!!\n\n", playername);
-                    playeratribute +=1;
+                    PlayerScoreRound +=1;
                 }   else if (TrunfoPlayer < TrunfoComputer) {
                     printf("O Computador ganhou!!!\n\n");
                 }   else {
@@ -174,10 +169,10 @@ void PlayTrunfo() {
     //Roda o jogo a partir do menu de escolha do jogador entre carta aleatória, ou escolha própria
     TrunfoPlayer = RandomTrunfo();
     TrunfoComputer = RandomTrunfo();
-    playeratribute = 0;
+    PlayerScoreRound = 0;
     menuloop = 2;
     while (menuloop == 2){
-        CardInfos();
+        CardInfos(PlayerCard);
         printf("Escolha um atributo para comparar:\n");
         printf("1- Populacao\n");
         printf("2- PIB\n");
@@ -191,7 +186,7 @@ void PlayTrunfo() {
         Sleep(3000);
         limparTela();
         //Escolha do segundo atribudo para ser comparado
-        CardInfos();
+        CardInfos(PlayerCard);
         printf("Escolha o segundo atributo para comparação:\n");
         printf("1- Populacao\n");
         printf("2- PIB\n");
@@ -208,13 +203,13 @@ void PlayTrunfo() {
         limparTela();
         ComparationTest();
         Sleep(3000);
-        if (playeratribute = 2){
-            printf("O jogador ganhou as duas rodadas!\n\n");
+        if (PlayerScoreRound == 2){
+            printf("O jogador ganhou a rodada!\n\n");
             PlayerPoints += 1;
-        } else if (playeratribute = 1) {
-            printf("O jogador e o Computador empataram!\n\n");
+        } else if (PlayerScoreRound == 1) {
+            printf("O jogador e o Computador empataram a rodada!\n\n");
         } else {
-            printf("O Computador ganhou!\n\n");
+            printf("O Computador ganhou a rodada!\n\n");
             ComputerPoints += 1;
         }
     }
